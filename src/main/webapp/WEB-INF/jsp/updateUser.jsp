@@ -36,9 +36,9 @@
         </div>
     </div>
     <form action="" id="userForm">
-        <input type="hidden" name="id" value="${user.id}"/>
-        用户名字：<input type="text" name="name" value="${user.name}"/><br>
-        用户小名：<input type="text" name="oldname" value="${user.oldname}"/><br>
+        <input type="hidden" name="id" value="${userInfo.id}"/>
+        用户名字：<input type="text" name="name" value="${userInfo.name}"/><br>
+        用户小名：<input type="text" name="oldName" value="${userInfo.oldName}"/><br>
         用户性别：<span onclick="radio(this)">男
                     <input type="radio" class="sex" id="man" value="男"/>
                 </span>
@@ -47,16 +47,16 @@
                 <span onclick="radio(this)">女
                     <input type="radio" class="sex" id="woman" value="女"/>
                 </span><br>
-        用户生日：<input type="date" name="birth" value="${user.birth}"/><br>
-        用户父亲：<input type="text" name="fatherid" value="${user.fatherid}"/><br>
-        用户母亲：<input type="text" name="motherid" value="${user.motherid}"/><br>
-        用户信息：<input type="text" name="text" value="${user.text}"/><br>
+        用户生日：<input type="date" name="birth" value="${userInfo.birth}"/><br>
+        用户父亲：<input type="text" name="fatherIdcard" value="${userInfo.fatherIdcard}"/><br>
+        用户母亲：<input type="text" name="motherIdcard" value="${userInfo.motherIdcard}"/><br>
+        用户信息：<input type="text" name="text" value="${userInfo.text}"/><br>
         <input type="button" value="提交" onclick="updateUser()"/>
     </form>
 
     <script type="text/javascript">
         window.onload=function () {
-            var sex="${user.sex}";
+            var sex="${userInfo.sex}";
             if(sex=="男"){
                 console.log("男");
                 $("#man").prop('checked',true);
@@ -78,13 +78,13 @@
                 //几个参数需要注意一下
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "<%=basePath %>user/updateUser" ,//url
+                url: "<%=basePath %>userInfo/updateUser" ,//url
                 data: $('#userForm').serialize(),
                 success: function (result) {
                     console.log(result);//打印服务端返回的数据(调试用)
                     if (result.flag == "SUCCESS") {
                         alert("更新成功！");
-                        window.location.href="<%=basePath %>user/allUser";
+                        window.location.href="<%=basePath %>userInfo/allUser";
                     }else{
                         alert("更新失败！； ");
                     }

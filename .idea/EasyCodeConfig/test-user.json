@@ -9,21 +9,14 @@
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "name",
+    "name" : "loginName",
     "comment" : null,
     "type" : "java.lang.String",
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "oldname",
-    "comment" : null,
-    "type" : "java.lang.String",
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "sex",
+    "name" : "loginPassword",
     "comment" : null,
     "type" : "java.lang.String",
     "shortType" : null,
@@ -31,76 +24,6 @@
     "ext" : { }
   }, {
     "name" : "idcard",
-    "comment" : null,
-    "type" : "java.lang.String",
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "birth",
-    "comment" : null,
-    "type" : "java.sql.Date ",
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "fatherid",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "motherid",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "partnerid",
-    "comment" : null,
-    "type" : null,
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "img",
-    "comment" : "头像路径",
-    "type" : "java.lang.String",
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "text",
-    "comment" : null,
-    "type" : "java.lang.String",
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "temp1",
-    "comment" : null,
-    "type" : "java.lang.String",
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "temp2",
-    "comment" : null,
-    "type" : "java.lang.String",
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "temp3",
-    "comment" : null,
-    "type" : "java.lang.String",
-    "shortType" : null,
-    "custom" : false,
-    "ext" : { }
-  }, {
-    "name" : "temp4",
     "comment" : null,
     "type" : "java.lang.String",
     "shortType" : null,

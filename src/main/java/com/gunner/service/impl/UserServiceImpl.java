@@ -1,7 +1,7 @@
 package com.gunner.service.impl;
 
 import com.gunner.model.pojo.User;
-import com.gunner.dao.UserDao;
+import com.gunner.dao.mapper.UserDao;
 import com.gunner.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * (User)表服务实现类
  *
  * @author Sunmz
- * @since 2019-04-01 11:25:22
+ * @since 2019-04-03 18:00:44
  */
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -74,6 +74,6 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.userDao.deleteById(id) > 0;
+        return this.userDao.remove(id) > 0;
     }
 }

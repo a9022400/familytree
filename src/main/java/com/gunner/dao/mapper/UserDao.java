@@ -1,4 +1,4 @@
-package com.gunner.dao;
+package com.gunner.dao.mapper;
 
 import com.gunner.model.pojo.User;
 import org.apache.ibatis.annotations.Param;
@@ -8,7 +8,7 @@ import java.util.List;
  * (User)表数据库访问层
  *
  * @author Sunmz
- * @since 2019-04-01 11:25:22
+ * @since 2019-04-03 17:59:26
  */
 public interface UserDao {
 
@@ -60,5 +60,5 @@ public interface UserDao {
      * @param id 主键
      * @return 影响行数
      */
-    int deleteById(Integer id);
+    int remove(Integer id);
 }

@@ -52,15 +52,15 @@
     </div>
     <form id="userForm">
         用户名字：<input type="text" name="name"/><br>
-        小名：<input type="text" name="oldname"/><br>
+        小名：<input type="text" name="oldName"/><br>
         性别：<span onclick="radio(this)">男<input type="radio" class="sex" id="man" value="男"/></span>
         &nbsp;<span onclick="radio(this)">女<input type="radio" class="sex" id="woman" value="女"/></span><br>
         生日：<input type="date" name="birth"/><br>
         父亲姓名：<input type="text" name="fatherName" id="fatherName"/>
-                 <input type="hidden" name="fatherId" id="fatherId"/>
+                 <input type="hidden" name="fatherIdcard" id="fatherIdcard"/>
                  <ul  id="searchResult" style="display: none"></ul>
                  <input type="button" value="校验是否存在重名"><br>
-        母亲姓名：<input type="text" name="motherid"/><br>
+        母亲姓名：<input type="text" name="motherIdcard"/><br>
         备注：<input type="text" name="text"/><br>
         <input type="button" value="添加" onclick="addUser()">
     </form>
@@ -76,13 +76,13 @@
                 //几个参数需要注意一下
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "<%=basePath %>user/addUser" ,//url
+                url: "<%=basePath %>userInfo/addUser" ,//url
                 data: $('#userForm').serialize(),
                 success: function (result) {
                     console.log(result);//打印服务端返回的数据(调试用)
                     if (result.flag == "SUCCESS") {
                         alert("更新成功！");
-                        window.location.href="<%=basePath %>user/allUser";
+                        window.location.href="<%=basePath %>userInfo/allUser";
                     }else{
                         alert("更新失败！； ");
                     }
@@ -102,23 +102,23 @@
                 //几个参数需要注意一下
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
-                url: "<%=basePath %>user/selectByName" ,//url
+                url: "<%=basePath %>userInfo/selectByName" ,//url
                 data: {"name":name},
                 success: function (data) {
                     console.log(data);//打印服务端返回的数据(调试用)
-                    let searchResult;
+                    var searchResult;
                     searchResult = $('#searchResult');
                     if (data.list.length > 0) {
                         //将返回结果到ul标签下的html下面数据清空
                         searchResult.html("");
                         searchResult.append("<li style='list-style:none'>"+"编号"+"&nbsp;&nbsp;&nbsp;"+"姓名"+"</li>");
                         //循环遍历返回回来的数据
-                        $.each(data.list, function(index, user) {
+                        $.each(data.list, function(index, userInfo) {
                             //将遍历回来的数据追加到ul标签下
-                            //console.log(user);
-                            let str="";
-                            let func="";
-                            $.each(user, function(id, name) {
+                            //console.log(userInfo);
+                            var str="";
+                            var func="";
+                            $.each(userInfo, function(id, name) {
                                 //console.log(id);
                                 //console.log(name);
                                 //将遍历回来的数据追加到ul标签下

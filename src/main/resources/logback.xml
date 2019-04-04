@@ -127,6 +127,11 @@
         </filter>
     </appender>
 
+    <settings>
+        <setting name="logPrefix" value="dao."/>
+    </settings>
+    <logger name="dao" level="DEBUG"/>
+
     <appender name="FILTER_INFO"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${LOG_PATH}/log_filter.log</File>

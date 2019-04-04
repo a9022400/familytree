@@ -41,13 +41,13 @@
     $.ajax({
         type: "POST",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: "<%=basePath %>user/parentsAutoComplete" ,//url
+        url: "<%=basePath %>userInfo/parentsAutoComplete" ,//url
         data: $('#userForm').serialize(),
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
             if (result.flag == "SUCCESS") {
                 alert("更新成功！");
-                window.location.href="<%=basePath %>user/allUser";
+                window.location.href="<%=basePath %>userInfo/allUser";
             }else{
                 alert("更新失败！； ");
             }
@@ -69,10 +69,10 @@
             delay: 500,
             select: function( event, ui ) {
                 $( "#fatherName" ).val( ui.item.label );
-                $( "#fatherId" ).val( ui.item.value );
+                $( "#fatherIdcard" ).val( ui.item.value );
                 //$( "#fatherDescription" ).html( ui.item.desc );
                 return false;
-                //$("#fatherId").val(ui.item.label.split(",")[0]);
+                //$("#fatherIdcard").val(ui.item.label.split(",")[0]);
                 //$("#fatherName").val(ui.item.label.split(",")[0]);
                 //console.log(ui.item.label.split(",")[0]);
             },
@@ -92,7 +92,7 @@
     <form id="userForm">
         <label>父亲姓名：</label>
         <input type="text" name="fatherName" id="fatherName" >
-        <input type="hidden" id="fatherId">
+        <input type="hidden" id="fatherIdcard">
         <p id="fatherDescription"></p>
     </form>
 </div>
@@ -119,7 +119,7 @@
             //几个参数需要注意一下
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "<%=basePath %>user/selectByName" ,//url
+            url: "<%=basePath %>userInfo/selectByName" ,//url
             data: {"name":name},
             success: function (data) {
                 console.log(data);//打印服务端返回的数据(调试用)

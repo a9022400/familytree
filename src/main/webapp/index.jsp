@@ -5,6 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
-<a href="/familytree/paper/selectOne?id=1">Hello World!</a>
+<a href="/familytree/userInfo/jump?jspName=personal">Hello World!</a>
 </body>
 </html>

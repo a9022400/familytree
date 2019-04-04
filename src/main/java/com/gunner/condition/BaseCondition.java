@@ -5,7 +5,7 @@ import com.github.pagehelper.PageRowBounds;
 import org.apache.ibatis.session.RowBounds;
 
 /**
- * @author makejava
+ * @author Sunmz
  * @since 2019-03-26 15:58:27
  */
 public class BaseCondition {

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gunner.dao.mapper.UserInfoDao">
+
+    <resultMap type="com.gunner.model.vo.UserInfoVO" id="UserVOMap">
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="oldName" column="old_name" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="idcard" column="idcard" jdbcType="VARCHAR"/>
+        <result property="birth" column="birth" jdbcType="OTHER"/>
+        <result property="fatherIdcard" column="father_idcard" jdbcType="VARCHAR"/>
+        <result property="motherIdcard" column="mother_idcard" jdbcType="VARCHAR"/>
+        <result property="partnerIdcard" column="partner_idcard" jdbcType="VARCHAR"/>
+        <result property="img" column="img" jdbcType="VARCHAR"/>
+        <result property="text" column="text" jdbcType="VARCHAR"/>
+        <result property="temp1" column="temp1" jdbcType="VARCHAR"/>
+        <result property="temp2" column="temp2" jdbcType="VARCHAR"/>
+        <result property="temp3" column="temp3" jdbcType="VARCHAR"/>
+        <result property="temp4" column="temp4" jdbcType="VARCHAR"/>
+        <collection property="father" ofType="com.gunner.model.pojo.UserInfo">
+            <result property="name" column="fatherName" jdbcType="VARCHAR"/>
+            <result property="idcard" column="father_idcard" jdbcType="VARCHAR"/>
+        </collection>
+        <collection property="mother" ofType="com.gunner.model.pojo.UserInfo">
+            <result property="name" column="motherName" jdbcType="VARCHAR"/>
+            <result property="idcard" column="mother_idcard" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+    <sql id="condition">
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="oldName != null and oldName != ''">
+                and old_name = #{oldName}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="idcard != null and idcard != ''">
+                and idcard = #{idcard}
+            </if>
+            <if test="birth != null">
+                and birth = #{birth}
+            </if>
+            <if test="fatherIdcard != null">
+                and father_idcard = #{fatherIdcard}
+            </if>
+            <if test="motherIdcard != null">
+                and mother_idcard = #{motherIdcard}
+            </if>
+            <if test="partnerIdcard != null">
+                and partner_idcard = #{partnerIdcard}
+            </if>
+            <if test="img != null and img != ''">
+                and img = #{img}
+            </if>
+            <if test="text != null and text != ''">
+                and text = #{text}
+            </if>
+            <if test="temp1 != null and temp1 != ''">
+                and temp1 = #{temp1}
+            </if>
+            <if test="temp2 != null and temp2 != ''">
+                and temp2 = #{temp2}
+            </if>
+            <if test="temp3 != null and temp3 != ''">
+                and temp3 = #{temp3}
+            </if>
+            <if test="temp4 != null and temp4 != ''">
+                and temp4 = #{temp4}
+            </if>
+        </where>
+    </sql>
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserVOMap">
+        select
+          id, name, old_name, sex, idcard, birth, father_idcard, mother_idcard, partner_idcard, img, text, temp1, temp2, temp3, temp4
+        from test.user_info
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserVOMap">
+        select
+          t1.id, t1.name, t1.old_name, t1.sex, t1.idcard, t1.birth, t1.father_idcard, t1.mother_idcard, t1.partner_idcard, t1.img, t1.text, t1.temp1, t1.temp2, t1.temp3, t1.temp4, t2.name fatherName,t3.name motherName
+        from test.user_info t1
+        LEFT JOIN test.user_info t2 ON t1.father_idcard = t2.idcard
+        LEFT JOIN test.user_info t3 ON t1.mother_idcard = t3.idcard
+        <include refid="condition"/>
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserVOMap">
+        select
+          id, name, old_name, sex, idcard, birth, father_idcard, mother_idcard, partner_idcard, img, text, temp1, temp2, temp3, temp4
+        from test.user_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="oldName != null and oldName != ''">
+                and old_name = #{oldName}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="idcard != null and idcard != ''">
+                and idcard = #{idcard}
+            </if>
+            <if test="birth != null">
+                and birth = #{birth}
+            </if>
+            <if test="fatherIdcard != null">
+                and father_idcard = #{fatherIdcard}
+            </if>
+            <if test="motherIdcard != null">
+                and mother_idcard = #{motherIdcard}
+            </if>
+            <if test="partnerIdcard != null">
+                and partner_idcard = #{partnerIdcard}
+            </if>
+            <if test="img != null and img != ''">
+                and img = #{img}
+            </if>
+            <if test="text != null and text != ''">
+                and text = #{text}
+            </if>
+            <if test="temp1 != null and temp1 != ''">
+                and temp1 = #{temp1}
+            </if>
+            <if test="temp2 != null and temp2 != ''">
+                and temp2 = #{temp2}
+            </if>
+            <if test="temp3 != null and temp3 != ''">
+                and temp3 = #{temp3}
+            </if>
+            <if test="temp4 != null and temp4 != ''">
+                and temp4 = #{temp4}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into test.user_info(name, old_name, sex, idcard, birth, father_idcard, mother_idcard, partner_idcard, img, text, temp1, temp2, temp3, temp4)
+        values (#{name}, #{oldName}, #{sex}, #{idcard}, #{birth}, #{fatherIdcard}, #{motherIdcard}, #{partnerIdcard}, #{img}, #{text}, #{temp1}, #{temp2}, #{temp3}, #{temp4})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update test.user_info
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="oldName != null and oldName != ''">
+                old_name = #{oldName},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="idcard != null and idcard != ''">
+                idcard = #{idcard},
+            </if>
+            <if test="birth != null">
+                birth = #{birth},
+            </if>
+            <if test="fatherIdcard != null">
+                father_idcard = #{fatherIdcard},
+            </if>
+            <if test="motherIdcard != null">
+                mother_idcard = #{motherIdcard},
+            </if>
+            <if test="partnerIdcard != null">
+                partner_idcard = #{partnerIdcard},
+            </if>
+            <if test="img != null and img != ''">
+                img = #{img},
+            </if>
+            <if test="text != null and text != ''">
+                text = #{text},
+            </if>
+            <if test="temp1 != null and temp1 != ''">
+                temp1 = #{temp1},
+            </if>
+            <if test="temp2 != null and temp2 != ''">
+                temp2 = #{temp2},
+            </if>
+            <if test="temp3 != null and temp3 != ''">
+                temp3 = #{temp3},
+            </if>
+            <if test="temp4 != null and temp4 != ''">
+                temp4 = #{temp4},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="remove">
+        delete from test.user_info where id = #{id}
+    </delete>
+
+</mapper>
