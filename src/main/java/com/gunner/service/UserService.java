@@ -1,15 +1,25 @@
 package com.gunner.service;
 
 import com.gunner.model.pojo.User;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * (User)表服务接口
  *
  * @author Sunmz
- * @since 2019-04-03 17:59:04
+ * @since 2019-04-08 09:52:35
  */
 public interface UserService {
+
+    /**
+     * 登录
+     *
+     * @param user 主键
+     * @return 实例对象
+     */
+    HashMap login(User user);
 
     /**
      * 通过ID查询单条数据

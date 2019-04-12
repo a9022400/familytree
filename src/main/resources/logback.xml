@@ -118,7 +118,7 @@
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <Target>System.out</Target>
         <encoder>
-            <pattern>%-5p [%d][%mdc{mdc_userId}] %C:%L - %m %n</pattern>
+            <pattern>%5p [%d{yyyy-MM-dd HH:mm:ss}] [%C:%L] - %m%n</pattern>
             <charset>utf-8</charset>
         </encoder>
         <!-- 此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息 -->
@@ -132,43 +132,6 @@
     </settings>
     <logger name="dao" level="DEBUG"/>
 
-    <appender name="FILTER_INFO"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${LOG_PATH}/log_filter.log</File>
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} : %m%n</pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/log_filter.%d{yyyy-MM-dd}</fileNamePattern>
-        </rollingPolicy>
-    </appender>
-
-    <logger name="FILTER_INFO_LOGGER" additivity="false" level="INFO">
-        <appender-ref ref="FILTER_INFO" />
-    </logger>
-
-
-    <appender name="INTEREST_BEARING_INFO"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${LOG_PATH}/log_interest_bearing.log</File>
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} : %m%n</pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/log_interest_bearing.%d{yyyy-MM-dd}</fileNamePattern>
-        </rollingPolicy>
-    </appender>
-
-    <logger name="INTEREST_BEARING_LOGGER" additivity="true" level="INFO">
-        <appender-ref ref="INTEREST_BEARING_INFO" />
-    </logger>
-
 
     <!-- 为单独的包配置日志级别，若root的级别大于此级别， 此处级别也会输出 应用场景：生产环境一般不会将日志级别设置为trace或debug，但是为详细的记录SQL语句的情况，
         可将hibernate的级别设置为debug，如此一来，日志文件中就会出现hibernate的debug级别日志， 而其它包则会按root的级别输出日志 -->
@@ -179,11 +142,11 @@
     <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" />
     <logger name="java.sql.Connection" level="DEBUG" />
     <logger name="java.sql.Statement" level="DEBUG" />
-    <logger name="java.sql.PreparedStatement" level="DEBUG" />-->
+    <logger name="java.sql.PreparedStatement" level="DEBUG" /> -->
 
 
     <!-- 生产环境，将此级别配置为适合的级别，以名日志文件太多或影响程序性能 -->
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="FILEDEBUG" />
         <appender-ref ref="FILEINFO" />
         <appender-ref ref="FILEWARN" />
@@ -191,4 +154,5 @@
         <!-- 生产环境将请stdout去掉 -->
         <appender-ref ref="stdout" />
     </root>
+    <Encoding>UTF-8</Encoding>
 </configuration>

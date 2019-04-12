@@ -7,6 +7,9 @@ public class StaticAttribute {
     public static String appid="wxc75d0b1f540ce385";
     public static String secret="e4d264c0f2dc4c9743743b9b6ea05daa";
 
+    //正式
+    public static String apiKey="wxc75d0b1f540ce385";
+
     /*
     //测试
     public static String appid="wx8a49f5efdd635440";

@@ -2,16 +2,23 @@ package com.gunner.controller;
 
 import com.gunner.model.pojo.User;
 import com.gunner.service.UserService;
+import com.gunner.util.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 /**
  * (User)表控制层
  *
  * @author Sunmz
- * @since 2019-04-03 17:59:04
+ * @since 2019-04-08 09:52:35
  */
 @Controller
 @RequestMapping("user")
@@ -21,6 +28,31 @@ public class UserController {
      */
     @Resource
     private UserService userService;
+
+    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    /**
+     * 用户登录
+     *
+     * @param user 主键
+     * @return 登录是否成功
+     */
+    @ResponseBody
+    @RequestMapping("login")
+    public HashMap login(User user, HttpServletRequest request, HttpServletResponse response) {
+        HashMap map = null;
+        try {
+            HttpSession session = request.getSession();
+            map = userService.login(user);
+            HashMap data=(HashMap)map.get("data");
+            session.setAttribute("Token",data.get("Token"));
+            session.setAttribute("Id",data.get("Id"));
+        } catch (Exception e) {
+            logger.info("userObject:" + ExceptionUtils.getStackTraceString(e));
+            e.printStackTrace();
+        }
+        return map;
+    }
 
     /**
      * 通过主键查询单条数据
@@ -32,7 +64,7 @@ public class UserController {
     public User select(Integer id) {
         return this.userService.queryById(id);
     }
-    
+
     /**
      * 新增数据
      *
@@ -43,7 +75,7 @@ public class UserController {
     public User insert(User user) {
         return this.userService.insert(user);
     }
-        
+
     /**
      * 删除数据
      *
@@ -54,7 +86,7 @@ public class UserController {
     public User delete(Integer id) {
         return this.userService.queryById(id);
     }
-            
+
     /**
      * 通过主键查询单条数据
      *

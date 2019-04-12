@@ -8,9 +8,17 @@ import java.util.List;
  * (User)表数据库访问层
  *
  * @author Sunmz
- * @since 2019-04-03 17:59:26
+ * @since 2019-04-08 09:52:34
  */
 public interface UserDao {
+
+    /**
+     * 登录
+     *
+     * @param user 主键
+     * @return 实例对象
+     */
+    User login(User user);
 
     /**
      * 通过ID查询单条数据

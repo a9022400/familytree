@@ -1,17 +1,13 @@
 package com.gunner.util;
 
 import org.apache.commons.beanutils.BeanMap;
-import org.apache.commons.beanutils.BeanUtils;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collections;
 import java.util.Map;
 
 /**
  * create by river  2017/10/10
  * desc:
  */
-public class BeanUtil<T> {
+public class BeanUtils<T> {
 
 
     /**
@@ -27,7 +23,7 @@ public class BeanUtil<T> {
         if (null == map && map.isEmpty()) {
             return null;
         }
-        BeanUtils.populate(obj, map);
+        org.apache.commons.beanutils.BeanUtils.populate(obj, map);
         return obj;
     }
 

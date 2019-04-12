@@ -15,7 +15,7 @@ import java.util.Map;
  * create by river  2017/9/28
  * desc:
  */
-public class MessageUtil {
+public class MessageUtils {
 
     /**
      * 将xml转换map

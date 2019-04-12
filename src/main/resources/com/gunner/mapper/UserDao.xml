@@ -4,15 +4,31 @@
 
     <resultMap type="com.gunner.model.pojo.User" id="UserMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="uuid" column="uuid" jdbcType="VARCHAR"/>
         <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
         <result property="loginPassword" column="login_password" jdbcType="VARCHAR"/>
-        <result property="idcard" column="idcard" jdbcType="VARCHAR"/>
+        <result property="purview" column="purview" jdbcType="VARCHAR"/>
+        <result property="modifyTime" column="modify_time" jdbcType="TIMESTAMP"/>
+        <result property="modifyUuid" column="modify_uuid" jdbcType="VARCHAR"/>
+        <result property="modifyIp" column="modify_ip" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="createUuid" column="create_uuid" jdbcType="VARCHAR"/>
+        <result property="createIp" column="create_ip" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <!--查询单个-->
+    <select id="login" resultMap="UserMap">
+        select
+          id, uuid, login_name, purview, modify_time, modify_uuid, modify_ip, create_time, create_uuid, create_ip, status
+        from test.user
+        where login_name = #{loginName} and login_password = #{loginPassword}
+    </select>
 
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
         select
-          id, login_name, login_password, idcard
+          id, uuid, login_name, login_password, purview, modify_time, modify_uuid, modify_ip, create_time, create_uuid, create_ip, status
         from test.user
         where id = #{id}
     </select>
@@ -20,7 +36,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
         select
-          id, login_name, login_password, idcard
+          id, uuid, login_name, login_password, purview, modify_time, modify_uuid, modify_ip, create_time, create_uuid, create_ip, status
         from test.user
         limit #{offset}, #{limit}
     </select>
@@ -28,11 +44,14 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UserMap">
         select
-          id, login_name, login_password, idcard
+          id, uuid, login_name, login_password, purview, modify_time, modify_uuid, modify_ip, create_time, create_uuid, create_ip, status
         from test.user
         <where>
             <if test="id != null">
                 and id = #{id}
+            </if>
+            <if test="uuid != null and uuid != ''">
+                and uuid = #{uuid}
             </if>
             <if test="loginName != null and loginName != ''">
                 and login_name = #{loginName}
@@ -40,30 +59,75 @@
             <if test="loginPassword != null and loginPassword != ''">
                 and login_password = #{loginPassword}
             </if>
-            <if test="idcard != null and idcard != ''">
-                and idcard = #{idcard}
+            <if test="purview != null and purview != ''">
+                and purview = #{purview}
+            </if>
+            <if test="modifyTime != null">
+                and modify_time = #{modifyTime}
+            </if>
+            <if test="modifyUuid != null and modifyUuid != ''">
+                and modify_uuid = #{modifyUuid}
+            </if>
+            <if test="modifyIp != null and modifyIp != ''">
+                and modify_ip = #{modifyIp}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="createUuid != null and createUuid != ''">
+                and create_uuid = #{createUuid}
+            </if>
+            <if test="createIp != null and createIp != ''">
+                and create_ip = #{createIp}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
             </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into test.user(login_name, login_password, idcard)
-        values (#{loginName}, #{loginPassword}, #{idcard})
+        insert into test.user(uuid, login_name, login_password, purview, modify_time, modify_uuid, modify_ip, create_time, create_uuid, create_ip, status)
+        values (#{uuid}, #{loginName}, #{loginPassword}, #{purview}, #{modifyTime}, #{modifyUuid}, #{modifyIp}, #{createTime}, #{createUuid}, #{createIp}, #{status})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
         update test.user
         <set>
+            <if test="uuid != null and uuid != ''">
+                uuid = #{uuid},
+            </if>
             <if test="loginName != null and loginName != ''">
                 login_name = #{loginName},
             </if>
             <if test="loginPassword != null and loginPassword != ''">
                 login_password = #{loginPassword},
             </if>
-            <if test="idcard != null and idcard != ''">
-                idcard = #{idcard},
+            <if test="purview != null and purview != ''">
+                purview = #{purview},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime},
+            </if>
+            <if test="modifyUuid != null and modifyUuid != ''">
+                modify_uuid = #{modifyUuid},
+            </if>
+            <if test="modifyIp != null and modifyIp != ''">
+                modify_ip = #{modifyIp},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="createUuid != null and createUuid != ''">
+                create_uuid = #{createUuid},
+            </if>
+            <if test="createIp != null and createIp != ''">
+                create_ip = #{createIp},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
             </if>
         </set>
         where id = #{id}

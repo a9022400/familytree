@@ -9,22 +9,78 @@
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "loginName",
+    "name" : "uuid",
     "comment" : null,
+    "type" : "java.lang.String",
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "loginName",
+    "comment" : "登录名",
     "type" : "java.lang.String",
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
     "name" : "loginPassword",
+    "comment" : "登录密码",
+    "type" : "java.lang.String",
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "purview",
     "comment" : null,
     "type" : "java.lang.String",
     "shortType" : null,
     "custom" : false,
     "ext" : { }
   }, {
-    "name" : "idcard",
+    "name" : "modifyTime",
     "comment" : null,
+    "type" : "java.util.Date",
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "modifyUuid",
+    "comment" : null,
+    "type" : "java.lang.String",
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "modifyIp",
+    "comment" : null,
+    "type" : "java.lang.String",
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "createTime",
+    "comment" : null,
+    "type" : "java.util.Date",
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "createUuid",
+    "comment" : null,
+    "type" : "java.lang.String",
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "createIp",
+    "comment" : null,
+    "type" : "java.lang.String",
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "status",
+    "comment" : "0-禁止登陆，1-正常，2-需修改密码",
     "type" : "java.lang.String",
     "shortType" : null,
     "custom" : false,

@@ -1,6 +1,6 @@
 package com.gunner.util;
 
-public class ExceptionUtil {
+public class ExceptionUtils {
     //打印异常堆栈信息
     public static String getStackTraceString(Throwable ex) {//(Exception ex) {
         StackTraceElement[] traceElements = ex.getStackTrace();

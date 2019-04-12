@@ -2,7 +2,7 @@ package com.gunner.controller.accredit;
 
 import com.alibaba.fastjson.JSONObject;
 import com.gunner.config.StaticAttribute;
-import com.gunner.util.CommonUtil;
+import com.gunner.util.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -43,7 +43,7 @@ public class WechatAuthTokenAndReceiveMessageController {
                 "&code=" + code +
                 "&grant_type=authorization_code ";
 
-        JSONObject jsonObject = CommonUtil.doGetJson(url);
+        JSONObject jsonObject = CommonUtils.doGetJson(url);
         String accessToken = jsonObject.getString("access_token");
         String openId = jsonObject.getString("openid");
         System.out.println(jsonObject.toJSONString());
@@ -58,7 +58,7 @@ public class WechatAuthTokenAndReceiveMessageController {
                 + "access_token=" + StaticAttribute.AccessToken
                 + "&openid=" + openId
                 + "&lang=" + "zh_CN";
-        JSONObject infoJsonObject = CommonUtil.doGetJson(url);
+        JSONObject infoJsonObject = CommonUtils.doGetJson(url);
         System.out.println(infoJsonObject.toJSONString());
     }
 }
